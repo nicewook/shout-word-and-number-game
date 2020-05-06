@@ -32,19 +32,25 @@ recognition.maxAlternatives = 1;
 var diagnostic = document.querySelector(".output");
 var bg = document.querySelector("html");
 var hints = document.querySelector(".hints");
+var result = document.querySelector(".result");
 
+var currentColor = "사슴";
 var colorHTML = "";
 colors.forEach(function (v, i, a) {
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + " </span>";
 });
-hints.innerHTML =
-  "Tap/click then say a color to change the background color of the app. Try " +
-  colorHTML +
-  ".";
+hints.innerHTML = "단어들: " + colorHTML;
 
 document.body.onclick = function () {
   recognition.start();
+  currentColor = colors[Math.floor(Math.random() * colors.length)];
+  colorHTML =
+    '<span style="background-color:' +
+    currentColor +
+    ';"> ' +
+    currentColor +
+    " </span>";
   console.log("Ready to receive a color command.");
 };
 
@@ -58,8 +64,13 @@ recognition.onresult = function (event) {
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
   var color = event.results[0][0].transcript;
-  diagnostic.textContent = "Result received: " + color + ".";
-  bg.style.backgroundColor = color;
+  diagnostic.textContent = "제출: " + color;
+  if (color === currentColor) {
+    result.innerHTML = "정답";
+  } else {
+    result.innerHTML = "오답";
+  }
+  // bg.style.backgroundColor = color;
   console.log("Confidence: " + event.results[0][0].confidence);
 };
 
