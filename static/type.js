@@ -51,6 +51,7 @@ document.body.onclick = function () {
     ';"> ' +
     currentColor +
     " </span>";
+  hints.innerHTML = colorHTML;
   console.log("Ready to receive a color command.");
 };
 
@@ -66,9 +67,9 @@ recognition.onresult = function (event) {
   var color = event.results[0][0].transcript;
   diagnostic.textContent = "제출: " + color;
   if (color === currentColor) {
-    result.innerHTML = "정답";
+    result.innerHTML = "정답: " + currentColor + " - " + color;
   } else {
-    result.innerHTML = "오답";
+    result.innerHTML = "오답: " + currentColor + " - " + color;
   }
   // bg.style.backgroundColor = color;
   console.log("Confidence: " + event.results[0][0].confidence);
