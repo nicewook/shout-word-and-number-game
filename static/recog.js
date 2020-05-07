@@ -56,7 +56,8 @@ document.body.onclick = function () {
 };
 
 function window.onload(){
-  recognition.start();
+  setTimeout(function() {
+    recognition.start();
   currentColor = "시작";
   colorHTML =
     '<span style="background-color:' +
@@ -66,6 +67,8 @@ function window.onload(){
     " </span>";
   hints.innerHTML = colorHTML;
   console.log("시작! 하고 말하면 시작한다.");
+  }, 3000);
+  
  }
 
 recognition.onresult = function (event) {
