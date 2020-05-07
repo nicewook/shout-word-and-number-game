@@ -3,8 +3,7 @@ var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent =
   SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
-// var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
-var colors = [
+var animal = [
   "돼지",
   "개",
   "고양이",
@@ -17,7 +16,7 @@ var colors = [
   "사슴",
 ];
 var grammar =
-  "#JSGF V1.0; grammar colors; public <color> = " + colors.join(" | ") + " ;";
+  "#JSGF V1.0; grammar animal; public <animal> = " + animal.join(" | ") + " ;";
 
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
@@ -34,56 +33,13 @@ var bg = document.querySelector("html");
 var hints = document.querySelector(".hints");
 var result = document.querySelector(".result");
 
-var currentColor = "사슴";
-var colorHTML = "";
-colorHTML =
-  '<span style="background-color:' +
-  currentColor +
-  ';"> ' +
-  currentColor +
-  " </span>";
-hints.innerHTML = colorHTML;
-// colors.forEach(function (v, i, a) {
-//   console.log(v, i);
-//   colorHTML += '<span style="background-color:' + v + ';"> ' + v + " </span>";
-// });
-// hints.innerHTML = "단어들: " + colorHTML;
-
-// document.body.onclick = function () {
-//   recognition.start();
-//   currentColor = colors[Math.floor(Math.random() * colors.length)];
-//   colorHTML =
-//     '<span style="background-color:' +
-//     currentColor +
-//     ';"> ' +
-//     currentColor +
-//     " </span>";
-//   hints.innerHTML = colorHTML;
-//   console.log("Ready to receive a color command.");
-// };
-
+var wordHTML = "";
 function start() {
-  // recognition.start();
-  // currentColor = "시작";
-  // colorHTML =
-  //   '<span style="background-color:' +
-  //   currentColor +
-  //   ';"> ' +
-  //   currentColor +
-  //   " </span>";
-  // hints.innerHTML = colorHTML;
-  // console.log("시작! 하고 말하면 시작한다.");
-
   setTimeout(function () {
     recognition.start();
-    currentColor = "시작";
-    colorHTML =
-      '<span style="background-color:' +
-      currentColor +
-      ';"> ' +
-      currentColor +
-      " </span>";
-    hints.innerHTML = colorHTML;
+    currentAnimal = "시작";
+    wordHTML = currentWord;
+    hints.innerHTML = wordHTML;
     console.log("시작! 하고 말하면 시작한다.");
   }, 1000);
 }
@@ -97,14 +53,14 @@ recognition.onresult = function (event) {
   // These also have getters so they can be accessed like arrays.
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
-  var color = event.results[0][0].transcript;
-  diagnostic.textContent = color;
-  if (color === currentColor) {
+  var spokenWord = event.results[0][0].transcript;
+  diagnostic.textContent = spokenWord;
+  if (spokenWord === currentWord) {
     result.innerHTML = "정답입니다";
-    bg.style.backgroundColor = "green";
+    document.body.style.backgroundColor = "green";
   } else {
     result.innerHTML = "오답입니다";
-    bg.style.backgroundColor = "red";
+    document.body.style.backgroundColor = "red";
   }
   console.log("Confidence: " + event.results[0][0].confidence);
 };
@@ -116,17 +72,12 @@ recognition.onend = function () {
 };
 
 function restart() {
-  bg.style.backgroundColor = "#212529";
+  document.body.style.backgroundColor = "#212529";
   recognition.start();
-  currentColor = colors[Math.floor(Math.random() * colors.length)];
-  colorHTML =
-    '<span style="background-color:' +
-    currentColor +
-    ';"> ' +
-    currentColor +
-    " </span>";
-  hints.innerHTML = colorHTML;
-  console.log("Ready to receive a color command.");
+  currentWord = animal[Math.floor(Math.random() * animal.length)];
+  wordHTML = currentWord;
+  hints.innerHTML = wordHTML;
+  console.log("Ready to receive a word.");
 }
 
 recognition.onspeechend = function () {
@@ -134,9 +85,9 @@ recognition.onspeechend = function () {
 };
 
 recognition.onnomatch = function (event) {
-  diagnostic.textContent = "I didn't recognise that color.";
+  diagnostic.textContent = "못 알아 들었어요";
 };
 
 recognition.onerror = function (event) {
-  diagnostic.textContent = "Error occurred in recognition: " + event.error;
+  diagnostic.textContent = "못 알아 들었어요: " + event.error;
 };
