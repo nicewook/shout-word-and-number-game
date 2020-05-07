@@ -36,6 +36,13 @@ var result = document.querySelector(".result");
 
 var currentColor = "사슴";
 var colorHTML = "";
+colorHTML =
+  '<span style="background-color:' +
+  currentColor +
+  ';"> ' +
+  currentColor +
+  " </span>";
+hints.innerHTML = colorHTML;
 // colors.forEach(function (v, i, a) {
 //   console.log(v, i);
 //   colorHTML += '<span style="background-color:' + v + ';"> ' + v + " </span>";
