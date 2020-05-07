@@ -14,6 +14,16 @@ var animal = [
   "호랑이",
   "사자",
   "사슴",
+  "코끼리",
+  "악어",
+  "기린",
+  "코뿔소",
+  "원숭이",
+  "나무늘보",
+  "고슴도치",
+  "얼룩말",
+  "젖소",
+  "오리",
 ];
 var grammar =
   "#JSGF V1.0; grammar animal; public <animal> = " + animal.join(" | ") + " ;";
