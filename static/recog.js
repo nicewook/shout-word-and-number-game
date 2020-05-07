@@ -56,18 +56,29 @@ var colorHTML = "";
 // };
 
 function start() {
-  setTimeout(function () {
-    recognition.start();
-    currentColor = "앗";
-    colorHTML =
-      '<span style="background-color:' +
-      currentColor +
-      ';"> ' +
-      currentColor +
-      " </span>";
-    hints.innerHTML = colorHTML;
-    console.log("시작! 하고 말하면 시작한다.");
-  }, 3000);
+  recognition.start();
+  currentColor = "시작";
+  colorHTML =
+    '<span style="background-color:' +
+    currentColor +
+    ';"> ' +
+    currentColor +
+    " </span>";
+  hints.innerHTML = colorHTML;
+  console.log("시작! 하고 말하면 시작한다.");
+
+  // setTimeout(function () {
+  //   recognition.start();
+  //   currentColor = "시작";
+  //   colorHTML =
+  //     '<span style="background-color:' +
+  //     currentColor +
+  //     ';"> ' +
+  //     currentColor +
+  //     " </span>";
+  //   hints.innerHTML = colorHTML;
+  //   console.log("시작! 하고 말하면 시작한다.");
+  // }, 3000);
 }
 
 recognition.onresult = function (event) {
@@ -88,7 +99,7 @@ recognition.onresult = function (event) {
   }
   // bg.style.backgroundColor = color;
   console.log("Confidence: " + event.results[0][0].confidence);
-  restart();
+  setTimeout(restart(), 1000);
 };
 
 function restart() {
