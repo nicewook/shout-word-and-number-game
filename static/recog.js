@@ -32,15 +32,29 @@ var diagnostic = document.querySelector(".output");
 var bg = document.querySelector("html");
 var hints = document.querySelector(".hints");
 var result = document.querySelector(".result");
+var right = document.querySelector(".right");
+var wrong = document.querySelector(".wrong");
+
+let state = "ready";
+let count = 0;
+let rightNum = 0;
+let wrongNum = 0;
 
 var wordHTML = "";
 function start() {
   setTimeout(function () {
     recognition.start();
-    currentAnimal = "시작";
+    currentWord = "시작";
     wordHTML = currentWord;
     hints.innerHTML = wordHTML;
+    diagnostic.textContent = "";
     console.log("시작! 하고 말하면 시작한다.");
+
+    count = 0;
+    rightNum = 0;
+    right.innerHTML = rightNum;
+    wrongNum = 0;
+    wrong.innerHTML = wrongNum;
   }, 1000);
 }
 
@@ -54,18 +68,50 @@ recognition.onresult = function (event) {
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
   var spokenWord = event.results[0][0].transcript;
+
+  if (state === "ready") {
+    if (spokenWord == currentWord) {
+      console.log("시작합니다");
+
+      state = "start";
+      count = 0;
+      rightNum = 0;
+      right.innerHTML = rightNum;
+      wrongNum = 0;
+      wrong.innerHTML = wrongNum;
+      return;
+    } else {
+      console.log("시작하고 제대로 말해요!");
+      diagnostic.textContent = spokenWord;
+      start();
+      return;
+    }
+  }
   diagnostic.textContent = spokenWord;
   if (spokenWord === currentWord) {
     result.innerHTML = "정답입니다";
     document.body.style.backgroundColor = "green";
+    rightNum++;
+    right.innerHTML = rightNum;
   } else {
     result.innerHTML = "오답입니다";
     document.body.style.backgroundColor = "red";
+    wrongNum++;
+    wrong.innerHTML = wrongNum;
   }
+  count++;
+
   console.log("Confidence: " + event.results[0][0].confidence);
 };
 
 recognition.onend = function () {
+  if (count === 10) {
+    console.log("10문제 완료");
+    setTimeout(function () {
+      start();
+    }, 3000);
+    return;
+  }
   setTimeout(function () {
     restart();
   }, 3000);
