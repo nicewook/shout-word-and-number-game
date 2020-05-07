@@ -108,16 +108,20 @@ recognition.onresult = function (event) {
   console.log("Confidence: " + event.results[0][0].confidence);
   // setTimeout(restart(), 1000);
 
-  recognition.start();
-  currentColor = colors[Math.floor(Math.random() * colors.length)];
-  colorHTML =
-    '<span style="background-color:' +
-    currentColor +
-    ';"> ' +
-    currentColor +
-    " </span>";
-  hints.innerHTML = colorHTML;
-  console.log("Ready to receive a color command.");
+  // recognition.start();
+  // currentColor = colors[Math.floor(Math.random() * colors.length)];
+  // colorHTML =
+  //   '<span style="background-color:' +
+  //   currentColor +
+  //   ';"> ' +
+  //   currentColor +
+  //   " </span>";
+  // hints.innerHTML = colorHTML;
+  // console.log("Ready to receive a color command.");
+};
+
+recognition.onend = function () {
+  restart();
 };
 
 function restart() {
