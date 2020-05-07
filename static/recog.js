@@ -36,24 +36,24 @@ var result = document.querySelector(".result");
 
 var currentColor = "사슴";
 var colorHTML = "";
-colors.forEach(function (v, i, a) {
-  console.log(v, i);
-  colorHTML += '<span style="background-color:' + v + ';"> ' + v + " </span>";
-});
-hints.innerHTML = "단어들: " + colorHTML;
+// colors.forEach(function (v, i, a) {
+//   console.log(v, i);
+//   colorHTML += '<span style="background-color:' + v + ';"> ' + v + " </span>";
+// });
+// hints.innerHTML = "단어들: " + colorHTML;
 
-document.body.onclick = function () {
-  recognition.start();
-  currentColor = colors[Math.floor(Math.random() * colors.length)];
-  colorHTML =
-    '<span style="background-color:' +
-    currentColor +
-    ';"> ' +
-    currentColor +
-    " </span>";
-  hints.innerHTML = colorHTML;
-  console.log("Ready to receive a color command.");
-};
+// document.body.onclick = function () {
+//   recognition.start();
+//   currentColor = colors[Math.floor(Math.random() * colors.length)];
+//   colorHTML =
+//     '<span style="background-color:' +
+//     currentColor +
+//     ';"> ' +
+//     currentColor +
+//     " </span>";
+//   hints.innerHTML = colorHTML;
+//   console.log("Ready to receive a color command.");
+// };
 
 function window.onload(){
   setTimeout(function() {
