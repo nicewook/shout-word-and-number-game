@@ -78,7 +78,7 @@ function start() {
       " </span>";
     hints.innerHTML = colorHTML;
     console.log("시작! 하고 말하면 시작한다.");
-  }, 3000);
+  }, 1000);
 }
 
 recognition.onresult = function (event) {
