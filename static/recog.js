@@ -100,24 +100,13 @@ recognition.onresult = function (event) {
   var color = event.results[0][0].transcript;
   diagnostic.textContent = color;
   if (color === currentColor) {
-    result.innerHTML = "정답: " + currentColor + " - " + color;
+    result.innerHTML = "정답입니다";
+    bg.style.backgroundColor = #19bd34;
   } else {
-    result.innerHTML = "오답: " + currentColor + " - " + color;
+    result.innerHTML = "오답입니다";
+    bg.style.backgroundColor = #eb1394;
   }
-  // bg.style.backgroundColor = color;
   console.log("Confidence: " + event.results[0][0].confidence);
-  // setTimeout(restart(), 1000);
-
-  // recognition.start();
-  // currentColor = colors[Math.floor(Math.random() * colors.length)];
-  // colorHTML =
-  //   '<span style="background-color:' +
-  //   currentColor +
-  //   ';"> ' +
-  //   currentColor +
-  //   " </span>";
-  // hints.innerHTML = colorHTML;
-  // console.log("Ready to receive a color command.");
 };
 
 recognition.onend = function () {
@@ -127,6 +116,7 @@ recognition.onend = function () {
 };
 
 function restart() {
+  bg.style.backgroundColor = #212529;
   recognition.start();
   currentColor = colors[Math.floor(Math.random() * colors.length)];
   colorHTML =
