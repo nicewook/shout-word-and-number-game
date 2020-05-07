@@ -121,7 +121,9 @@ recognition.onresult = function (event) {
 };
 
 recognition.onend = function () {
-  restart();
+  setTimeout(function () {
+    restart();
+  }, 3000);
 };
 
 function restart() {
