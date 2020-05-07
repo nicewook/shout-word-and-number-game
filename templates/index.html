@@ -17,42 +17,39 @@
   </head>
 
   <body class="bg-dark text-white">
-    <header class="bg-secondary text-center p-3 mb-5">
-      <h1>단어와 숫자 말하기 게임</h1>
-    </header>
     <div class="container text-center">
       <!-- Word & Input -->
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <p class="lead">
-            화면에 보이는 단어 또는 숫자를
-            <span class="text-success" id="seconds">10</span>초 내에 소리내어
-            말하세요:
-          </p>
-          <p class="hints">시작</p>
-          <!-- <input
-            type="text"
-            class="form-control form-control-lg"
-            placeholder="말한 단어는 여기에 보일거에요"
-            id="word-input"
-            autofocus
-          /> -->
           <!-- Later we will use just h2 with different color -->
-          <p class="output">말한 단어는 여기에 보일거에요</p>
+          <div class="row mt-5">
+            <div class="col-md-6">
+              <h2>
+                문제:
+                <span id="hints">시작</span>
+              </h2>
+            </div>
+            <div class="col-md-6">
+              <h2>
+                제출:
+                <span id="output">10</span>
+              </h2>
+            </div>
+          </div>
           <p class="result">정답일까 오답일까?</p>
 
           <!-- Time and Score Columns -->
           <div class="row mt-5">
             <div class="col-md-6">
               <h3>
-                남은시간:
-                <span id="time">0</span>
+                정답개수:
+                <span id="right">0</span>
               </h3>
             </div>
             <div class="col-md-6">
               <h3>
-                점수:
-                <span id="score">0</span>
+                오답개수:
+                <span id="wrong">0</span>
               </h3>
             </div>
           </div>
@@ -74,6 +71,6 @@
         </div>
       </div>
     </div>
-    <script src="../static/type.js"></script>
+    <script src="../recog.js"></script>
   </body>
 </html>
