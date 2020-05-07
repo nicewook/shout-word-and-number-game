@@ -101,10 +101,10 @@ recognition.onresult = function (event) {
   diagnostic.textContent = color;
   if (color === currentColor) {
     result.innerHTML = "정답입니다";
-    // bg.style.backgroundColor = "green";
+    bg.style.backgroundColor = "green";
   } else {
     result.innerHTML = "오답입니다";
-    // bg.style.backgroundColor = "red";
+    bg.style.backgroundColor = "red";
   }
   console.log("Confidence: " + event.results[0][0].confidence);
 };
@@ -116,7 +116,7 @@ recognition.onend = function () {
 };
 
 function restart() {
-  // bg.style.backgroundColor = #212529;
+  bg.style.backgroundColor = "#212529";
   recognition.start();
   currentColor = colors[Math.floor(Math.random() * colors.length)];
   colorHTML =
