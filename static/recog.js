@@ -101,10 +101,10 @@ recognition.onresult = function (event) {
   diagnostic.textContent = color;
   if (color === currentColor) {
     result.innerHTML = "정답입니다";
-    bg.style.backgroundColor = #19bd34;
+    bg.style.backgroundColor = "green";
   } else {
     result.innerHTML = "오답입니다";
-    bg.style.backgroundColor = #eb1394;
+    bg.style.backgroundColor = "red";
   }
   console.log("Confidence: " + event.results[0][0].confidence);
 };
