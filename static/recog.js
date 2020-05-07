@@ -56,29 +56,29 @@ var colorHTML = "";
 // };
 
 function start() {
-  recognition.start();
-  currentColor = "시작";
-  colorHTML =
-    '<span style="background-color:' +
-    currentColor +
-    ';"> ' +
-    currentColor +
-    " </span>";
-  hints.innerHTML = colorHTML;
-  console.log("시작! 하고 말하면 시작한다.");
+  // recognition.start();
+  // currentColor = "시작";
+  // colorHTML =
+  //   '<span style="background-color:' +
+  //   currentColor +
+  //   ';"> ' +
+  //   currentColor +
+  //   " </span>";
+  // hints.innerHTML = colorHTML;
+  // console.log("시작! 하고 말하면 시작한다.");
 
-  // setTimeout(function () {
-  //   recognition.start();
-  //   currentColor = "시작";
-  //   colorHTML =
-  //     '<span style="background-color:' +
-  //     currentColor +
-  //     ';"> ' +
-  //     currentColor +
-  //     " </span>";
-  //   hints.innerHTML = colorHTML;
-  //   console.log("시작! 하고 말하면 시작한다.");
-  // }, 3000);
+  setTimeout(function () {
+    recognition.start();
+    currentColor = "시작";
+    colorHTML =
+      '<span style="background-color:' +
+      currentColor +
+      ';"> ' +
+      currentColor +
+      " </span>";
+    hints.innerHTML = colorHTML;
+    console.log("시작! 하고 말하면 시작한다.");
+  }, 3000);
 }
 
 recognition.onresult = function (event) {
