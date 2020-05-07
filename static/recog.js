@@ -55,20 +55,20 @@ var colorHTML = "";
 //   console.log("Ready to receive a color command.");
 // };
 
-function window.onload(){
-  setTimeout(function() {
+function start() {
+  setTimeout(function () {
     recognition.start();
-  currentColor = "앗";
-  colorHTML =
-    '<span style="background-color:' +
-    currentColor +
-    ';"> ' +
-    currentColor +
-    " </span>";
-  hints.innerHTML = colorHTML;
-  console.log("시작! 하고 말하면 시작한다.");
-  }, 3000);  
- }
+    currentColor = "앗";
+    colorHTML =
+      '<span style="background-color:' +
+      currentColor +
+      ';"> ' +
+      currentColor +
+      " </span>";
+    hints.innerHTML = colorHTML;
+    console.log("시작! 하고 말하면 시작한다.");
+  }, 3000);
+}
 
 recognition.onresult = function (event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
@@ -102,7 +102,7 @@ function restart() {
     " </span>";
   hints.innerHTML = colorHTML;
   console.log("Ready to receive a color command.");
-};
+}
 
 recognition.onspeechend = function () {
   recognition.stop();
