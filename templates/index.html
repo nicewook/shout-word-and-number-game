@@ -1,26 +1,79 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ko">
+  <!-- 참고할 것 http://bootstrapk.com/getting-started/ -->
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>단어와 숫자 말하기 게임</title>
+    <!-- <link rel="stylesheet" href="./style.css" type="text/css"> -->
 
-    <title>Speech color changer</title>
-
-    <link rel="stylesheet" href="../static/style.css">
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
   </head>
 
-  <body>
-    <h1>Speech color changer</h1>
+  <body class="bg-dark text-white">
+    <header class="bg-secondary text-center p-3 mb-5">
+      <h1>단어와 숫자 말하기 게임</h1>
+    </header>
+    <div class="container text-center">
+      <!-- Word & Input -->
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <p class="lead">
+            화면에 보이는 단어 또는 숫자를
+            <span class="text-success" id="seconds">10</span>초 내에 소리내어
+            말하세요:
+          </p>
+          <p class="hints">시작</p>
+          <!-- <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="말한 단어는 여기에 보일거에요"
+            id="word-input"
+            autofocus
+          /> -->
+          <!-- Later we will use just h2 with different color -->
+          <p class="output">말한 단어는 여기에 보일거에요</p>
+          <p class="result">정답일까 오답일까?</p>
 
-    <p class="hints"></p>
-    <div>
-        <p class="output"><em>...diagnostic messages</em></p>
+          <!-- Time and Score Columns -->
+          <div class="row mt-5">
+            <div class="col-md-6">
+              <h3>
+                남은시간:
+                <span id="time">0</span>
+              </h3>
+            </div>
+            <div class="col-md-6">
+              <h3>
+                점수:
+                <span id="score">0</span>
+              </h3>
+            </div>
+          </div>
+
+          <!-- Instructions -->
+          <div class="row mt5">
+            <div class="col-md-12">
+              <div class="card card-body bg-secondary text-white">
+                <h5>게임 방법</h5>
+                <p>
+                  화면에 보이는 단어 또는 숫자를 시간내에 큰 소리로 말했을때에
+                  말한 단어 또는 숫자가 화면에 나타나며, 이때 두 단어 또는
+                  숫자가 같으면 정답이다. 다시 게임하려면 현재 단어를 큰소리로
+                  말하면 된다. 점수는 리셋될 것이다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <script src="../static/script.js"></script>
+    <script src="../static/type.js"></script>
   </body>
 </html>
